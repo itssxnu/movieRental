@@ -15,7 +15,8 @@ public class MovieDAO {
         try (FileWriter fw = new FileWriter(MOVIE_FILE_PATH, true);
              BufferedWriter bw = new BufferedWriter(fw)) {
             String line = String.join("|", movie.getId(), movie.getTitle(), movie.getDescription(),
-                    movie.getGenre(), movie.getReleaseDate(), String.valueOf(movie.getPrice()));
+                    movie.getGenre(), movie.getReleaseDate(), String.valueOf(movie.getPrice()),
+                    movie.getPhotoPath());
             bw.write(line);
             bw.newLine();
         } catch (IOException e) {
@@ -30,8 +31,9 @@ public class MovieDAO {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                if (parts.length == 6) {
-                    movies.add(new Movie(parts[0], parts[1], parts[2], parts[3], parts[4], Double.parseDouble(parts[5])));
+                if (parts.length == 7) { // Changed from 6 to 7
+                    movies.add(new Movie(parts[0], parts[1], parts[2], parts[3], parts[4],
+                            Double.parseDouble(parts[5]), parts[6]));
                 }
             }
         } catch (IOException e) {
@@ -46,8 +48,9 @@ public class MovieDAO {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                if (parts.length == 6 && parts[0].equals(movieId)) {
-                    return new Movie(parts[0], parts[1], parts[2], parts[3], parts[4], Double.parseDouble(parts[5]));
+                if (parts.length == 7 && parts[0].equals(movieId)) {
+                    return new Movie(parts[0], parts[1], parts[2], parts[3], parts[4],
+                            Double.parseDouble(parts[5]), parts[6]);
                 }
             }
         } catch (IOException e) {

@@ -2,6 +2,7 @@ package com.app.movierental.controller;
 
 import com.app.movierental.dao.MovieDAO;
 import com.app.movierental.model.Movie;
+import com.app.movierental.util.FileUploadUtil;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @WebServlet("/movie")
+@MultipartConfig
 public class MovieServlet extends HttpServlet {
 
     @Override
@@ -41,19 +43,24 @@ public class MovieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
 
-        if ("add".equals(action)) {
-            // Add movie
-            String title = req.getParameter("title");
-            String description = req.getParameter("description");
-            String genre = req.getParameter("genre");
-            String releaseDate = req.getParameter("releaseDate");
-            double price = Double.parseDouble(req.getParameter("price"));
+            if ("add".equals(action)) {
+                // Handle file upload
+                Part filePart = req.getPart("photo");
+                String photoPath = FileUploadUtil.saveFile(filePart, req);
 
-            Movie movie = new Movie(UUID.randomUUID().toString(), title, description, genre, releaseDate, price);
-            MovieDAO.saveMovie(movie);
-            resp.sendRedirect(req.getContextPath() + "/movie?action=viewAll");
+                // Add movie with photo path
+                String title = req.getParameter("title");
+                String description = req.getParameter("description");
+                String genre = req.getParameter("genre");
+                String releaseDate = req.getParameter("releaseDate");
+                double price = Double.parseDouble(req.getParameter("price"));
 
-        } else if ("update".equals(action)) {
+                Movie movie = new Movie(UUID.randomUUID().toString(), title, description,
+                        genre, releaseDate, price, photoPath);
+                MovieDAO.saveMovie(movie);
+                resp.sendRedirect(req.getContextPath() + "/movie?action=viewAll");
+
+            } else if ("update".equals(action)) {
             // Update movie
             String id = req.getParameter("movieId");
             String title = req.getParameter("title");

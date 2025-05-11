@@ -35,9 +35,9 @@
     %>
     <div class="bg-[#1D1616] border border-[#8E1616] rounded-lg p-4 hover:border-[#D84040] transition-colors">
       <div class="h-40 bg-[#8E1616] bg-opacity-20 flex items-center justify-center mb-3 rounded">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#D84040]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-        </svg>
+        <img src="<%= request.getContextPath() + "/" + m.getPhotoPath() %>"
+             alt="<%= m.getTitle() %>"
+             class="h-full w-full object-cover">
       </div>
       <h3 class="futuristic-text text-lg text-[#EEEEEE] mb-1"><%= m.getTitle() %></h3>
       <p class="text-sm text-[#EEEEEE] opacity-80"><%= m.getReleaseDate() %></p>

@@ -23,7 +23,8 @@
     </a>
   </div>
 
-  <form action="${pageContext.request.contextPath}/movie?action=add" method="post" class="space-y-6">
+  <!-- Add enctype="multipart/form-data" for file upload -->
+  <form action="${pageContext.request.contextPath}/movie?action=add" method="post" enctype="multipart/form-data" class="space-y-6">
     <input type="hidden" name="action" value="add">
 
     <div>
@@ -53,6 +54,13 @@
     <div>
       <label class="block text-[#EEEEEE] mb-2">Price (LKR)</label>
       <input type="number" step="0.01" name="price" required
+             class="w-full px-4 py-2 bg-[#1D1616] border border-[#8E1616] rounded-lg text-[#EEEEEE] focus:outline-none focus:border-[#D84040]">
+    </div>
+
+    <!-- Add file upload field -->
+    <div>
+      <label class="block text-[#EEEEEE] mb-2">Movie Poster</label>
+      <input type="file" name="photo" accept="image/*" required
              class="w-full px-4 py-2 bg-[#1D1616] border border-[#8E1616] rounded-lg text-[#EEEEEE] focus:outline-none focus:border-[#D84040]">
     </div>
 

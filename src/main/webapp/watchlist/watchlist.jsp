@@ -41,9 +41,9 @@
         %>
         <div class="bg-[#1D1616] border border-[#8E1616] rounded-lg overflow-hidden hover:border-[#D84040] transition-colors">
             <div class="h-40 bg-[#8E1616] bg-opacity-20 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#D84040]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15l8-8m0 0l-8-8m8 8H4" />
-                </svg>
+                <img src="<%= request.getContextPath() + "/" + m.getPhotoPath() %>"
+                     alt="<%= m.getTitle() %>"
+                     class="h-full w-full object-cover">
             </div>
             <div class="p-4">
                 <h3 class="futuristic-text text-lg text-[#EEEEEE] mb-3"><%= m.getTitle() %></h3>

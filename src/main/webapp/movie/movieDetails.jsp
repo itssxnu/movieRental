@@ -43,10 +43,10 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         <!-- Movie Poster -->
-        <div class="movie-poster flex items-center justify-center rounded-xl h-96 lg:h-full">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 text-[#D84040]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
-            </svg>
+        <div class="movie-poster flex items-center justify-center rounded-xl h-96 lg:h-full bg-[#1D1616]">
+            <img src="<%= request.getContextPath() %>/<%= movie.getPhotoPath() %>"
+                 alt="<%= movie.getTitle() %>"
+                 class="h-full w-full object-cover rounded-xl">
         </div>
 
         <!-- Movie Details -->

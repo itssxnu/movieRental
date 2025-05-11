@@ -42,10 +42,18 @@
       for (Movie m : movies) {
     %>
     <div class="movie-card bg-[#1D1616] border border-[#8E1616] rounded-xl overflow-hidden transition-all">
-      <div class="h-48 bg-[#8E1616] bg-opacity-20 flex items-center justify-center">
+      <div class="h-48 bg-[#1D1616] flex items-center justify-center overflow-hidden">
+        <% if (m.getPhotoPath() != null && !m.getPhotoPath().isEmpty()) { %>
+
+        <img src="<%= request.getContextPath() + "/" + m.getPhotoPath() %>"
+             alt="<%= m.getTitle() %>"
+             class="h-full w-full object-cover">
+
+        <% } else { %>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[#D84040]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
         </svg>
+        <% } %>
       </div>
       <div class="p-4">
         <h3 class="futuristic-text text-lg text-[#D84040] mb-1"><%= m.getTitle() %></h3>

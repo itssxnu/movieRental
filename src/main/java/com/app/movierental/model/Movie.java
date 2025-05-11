@@ -7,8 +7,8 @@ public class Movie {
     private String genre;
     private String releaseDate;
     private double price;
+    private String photoPath;
 
-    // Constructor
     public Movie(String id, String title, String description, String genre, String releaseDate, double price) {
         this.id = id;
         this.title = title;
@@ -18,7 +18,24 @@ public class Movie {
         this.price = price;
     }
 
-    // Getters and Setters
+    public Movie(String id, String title, String description, String genre,
+                 String releaseDate, double price, String photoPath) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.genre = genre;
+        this.releaseDate = releaseDate;
+        this.price = price;
+        this.photoPath = photoPath;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
     public String getId() {
         return id;
     }
